@@ -53,7 +53,7 @@ const OneAccountButton = () => {
 
 				<DropdownSection title="Herramientas">
 					<DropdownItem key="config" startContent={<GearSix size={20} />}>
-						Configuración
+						Configuración 2
 					</DropdownItem>
 				</DropdownSection>
 
