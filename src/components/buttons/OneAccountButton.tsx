@@ -5,16 +5,50 @@ import {
 	Dropdown,
 	DropdownItem,
 	DropdownMenu,
-	DropdownTrigger,
 	DropdownSection,
+	DropdownTrigger,
 } from "@nextui-org/dropdown";
-import { OneUserIcon } from "../icons/OneIcons";
-import {
-	At,
-	GearSix,
-	SignIn,
-	SignOut,
-} from "@phosphor-icons/react/dist/ssr/index";
+import { User } from "@nextui-org/user";
+import { OneConfigIcon, OneLogoutIcon, OneThemeIcon, OneUserIcon } from "../icons/OneIcons";
+import ThemeTabsSwitcher from "../theme/ThemeTabsSwitcher";
+
+const options = [
+	{
+		key: "profile",
+		textValue: "User Profile",
+		showDivider: true,
+		render: (
+			<User
+				name="Bryan Grados"
+				description="@bryangrados"
+				classNames={{
+					name: "text-default-600",
+					description: "text-default-500",
+				}}
+				avatarProps={{
+					size: "sm",
+					src: "https://avatars.githubusercontent.com/u/30373425?v=4",
+				}}
+			/>
+		),
+	},
+	{
+		key: "config",
+		textValue: "Configuración",
+		startContent: <OneConfigIcon />,
+	},
+	{
+		key: "theme",
+		textValue: "Cambiar tema",
+		startContent: <OneThemeIcon />,
+		render: <ThemeTabsSwitcher />,
+	},
+	{
+		key: "logout",
+		textValue: "Cerrar sesión",
+		startContent: <OneLogoutIcon />,
+	},
+];
 
 const OneAccountButton = () => {
 	return (
@@ -36,37 +70,18 @@ const OneAccountButton = () => {
 					src="https://i.pravatar.cc/150?u=a042581f4e29026704d"
 				/>
 			</DropdownTrigger>
-			<DropdownMenu aria-label="Profile Actions" variant="flat">
-				<DropdownItem
-					key="profile"
-					textValue="User Menu"
-					startContent={<At size={20} />}
-				>
-					<p>user@gmail.com</p>
-				</DropdownItem>
-
-				<DropdownSection title="Información">
-					<DropdownItem key="config" startContent={<OneUserIcon />}>
-						Tu cuenta
-					</DropdownItem>
-				</DropdownSection>
-
-				<DropdownSection title="Herramientas">
-					<DropdownItem key="config" startContent={<GearSix size={20} />}>
-						Configuración 2
-					</DropdownItem>
-				</DropdownSection>
-
-				<DropdownSection title="Autenticación">
-					<DropdownItem
-						key="logout"
-						color="danger"
-						className="text-danger"
-						startContent={<SignIn size={20} />}
-					>
-						Cerrar sesión
-					</DropdownItem>
-				</DropdownSection>
+			<DropdownMenu aria-label="Profile Options" variant="flat">
+				{options.map((option) => (
+					<DropdownSection key={option.key} showDivider={option.showDivider}>
+						<DropdownItem
+							key={option.key}
+							startContent={option.startContent}
+							textValue={option.textValue}
+						>
+							{option.render ? option.render : option.textValue}
+						</DropdownItem>
+					</DropdownSection>
+				))}
 			</DropdownMenu>
 		</Dropdown>
 	);

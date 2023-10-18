@@ -9,12 +9,11 @@ import {
 } from "@nextui-org/navbar";
 import { Atom } from "@phosphor-icons/react/dist/ssr/index";
 import OneAccountButton from "../buttons/OneAccountButton";
-import ThemeSwitcher from "../theme/ThemeSwitcher";
 import NavigationLinks from "./navLinks";
 
 const OneNavbar = () => {
 	return (
-		<Navbar isBordered isBlurred={false}>
+		<Navbar shouldHideOnScroll isBordered isBlurred={false}>
 			<NavbarContent>
 				<NavbarMenuToggle className="sm:hidden" />
 				<NavbarBrand>
@@ -27,9 +26,6 @@ const OneNavbar = () => {
 			</NavbarContent>
 
 			<NavbarContent justify="end">
-				<NavbarItem>
-					<ThemeSwitcher />
-				</NavbarItem>
 				<NavbarItem>
 					<OneAccountButton />
 				</NavbarItem>

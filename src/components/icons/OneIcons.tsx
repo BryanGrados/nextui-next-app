@@ -1,23 +1,21 @@
-import {
-	CloudMoon,
-	CloudSun,
-	User,
-} from "@phosphor-icons/react/dist/ssr/index";
+import type { IconProps } from "@phosphor-icons/react";
+import { GearSix, Moon, Palette, SignOut, Sun, User } from "@phosphor-icons/react/dist/ssr/index";
 
-export const OneSunIcon = () => {
-	return <CloudSun size={20} weight="duotone" className="fill-default-500" />;
-};
+interface OneIconProps {
+	Icon: React.FC<IconProps>;
+}
 
-export const OneMoonIcon = () => {
-	return <CloudMoon size={20} weight="duotone" className="fill-default-600" />;
-};
+const defaultSize = 24;
+const defaultWeight = "light";
+const defaultStyle = "dark:fill-default-600 fill-default-500";
 
-export const OneUserIcon = () => {
-	return (
-		<User
-			size={20}
-			weight="light"
-			className="dark:fill-default-600 fill-default-500"
-		/>
-	);
-};
+const OneIcon: React.FC<OneIconProps> = ({ Icon }) => (
+	<Icon size={defaultSize} weight={defaultWeight} className={defaultStyle} />
+);
+
+export const OneSunIcon = () => <OneIcon Icon={Sun} />;
+export const OneMoonIcon = () => <OneIcon Icon={Moon} />;
+export const OneUserIcon = () => <OneIcon Icon={User} />;
+export const OneConfigIcon = () => <OneIcon Icon={GearSix} />;
+export const OneLogoutIcon = () => <OneIcon Icon={SignOut} />;
+export const OneThemeIcon = () => <OneIcon Icon={Palette} />;
